@@ -154,7 +154,8 @@ PRODUCT_COPY_FILES += \
     bootable/recovery/res/images/indeterminate06.png:root/res/images/indeterminate06.png \
     bootable/recovery/res/images/progress_empty.png:root/res/images/progress_empty.png \
     bootable/recovery/res/images/progress_fill.png:root/res/images/progress_fill.png \
-    bootable/recovery/res/images/stitch.png:root/res/images/stitch.png
+    bootable/recovery/res/images/stitch.png:root/res/images/stitch.png \
+    device/sony/fuji-common/prebuilt/filler:root/filler
 
 # Thermal monitor configuration
 PRODUCT_COPY_FILES += \
