@@ -3,6 +3,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
+# Recovery resources
+$(call inherit-product, device/sony/fuji-common/recovery/recovery.mk)
+
 DEVICE_PACKAGE_OVERLAYS += device/sony/fuji-common/overlay
 
 # Permissions
@@ -29,16 +32,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
    device/sony/fuji-common/prebuilt/logo_X.rle:root/logo.rle \
 
-#Offline charging animation
-PRODUCT_COPY_FILES += \
-    device/sony/fuji-common/prebuilt/animations/charging_animation_01_X.png:system/semc/chargemon/data/charging_animation_01.png \
-    device/sony/fuji-common/prebuilt/animations/charging_animation_02_X.png:system/semc/chargemon/data/charging_animation_02.png \
-    device/sony/fuji-common/prebuilt/animations/charging_animation_03_X.png:system/semc/chargemon/data/charging_animation_03.png \
-    device/sony/fuji-common/prebuilt/animations/charging_animation_04_X.png:system/semc/chargemon/data/charging_animation_04.png \
-    device/sony/fuji-common/prebuilt/animations/charging_animation_05_X.png:system/semc/chargemon/data/charging_animation_05.png \
-    device/sony/fuji-common/prebuilt/animations/charging_animation_06_X.png:system/semc/chargemon/data/charging_animation_06.png \
-    device/sony/fuji-common/prebuilt/animations/charging_animation_07_X.png:system/semc/chargemon/data/charging_animation_07.png
-
 # EGL config
 PRODUCT_COPY_FILES += \
     device/sony/fuji-common/config/egl.cfg:system/lib/egl/egl.cfg
@@ -53,11 +46,10 @@ PRODUCT_PACKAGES += \
     gralloc.msm8660 \
     hwcomposer.msm8660 \
     libgenlock \
-    libhwcexternal.so \
-    libhwcservice.so \
+    libhwcexternal \
+    libhwcservice \
     libmemalloc \
     liboverlay \
-    libqdMetaData.so \
     libqdutils \
     libtilerenderer
 
@@ -150,30 +142,6 @@ PRODUCT_COPY_FILES += \
     device/sony/fuji-common/recovery/bootrec:root/sbin/bootrec \
     device/sony/fuji-common/recovery/postrecoveryboot.sh:root/sbin/postrecoveryboot.sh
 
-# Recovery resources
-PRODUCT_COPY_FILES += \
-    bootable/recovery/res/images/icon_firmware_error.png:root/res/images/icon_firmware_error.png \
-    bootable/recovery/res/images/icon_firmware_install.png:root/res/images/icon_firmware_install.png \
-    bootable/recovery/res/images/icon_clockwork.png:root/res/images/icon_clockwork.png \
-    bootable/recovery/res/images/icon_error.png:root/res/images/icon_error.png \
-    bootable/recovery/res/images/icon_installing.png:root/res/images/icon_installing.png \
-    bootable/recovery/res/images/icon_installing_overlay01.png:root/res/images/icon_installing_overlay01.png \
-    bootable/recovery/res/images/icon_installing_overlay02.png:root/res/images/icon_installing_overlay02.png \
-    bootable/recovery/res/images/icon_installing_overlay03.png:root/res/images/icon_installing_overlay03.png \
-    bootable/recovery/res/images/icon_installing_overlay04.png:root/res/images/icon_installing_overlay04.png \
-    bootable/recovery/res/images/icon_installing_overlay05.png:root/res/images/icon_installing_overlay05.png \
-    bootable/recovery/res/images/icon_installing_overlay06.png:root/res/images/icon_installing_overlay06.png \
-    bootable/recovery/res/images/icon_installing_overlay07.png:root/res/images/icon_installing_overlay07.png \
-    bootable/recovery/res/images/indeterminate01.png:root/res/images/indeterminate01.png \
-    bootable/recovery/res/images/indeterminate02.png:root/res/images/indeterminate02.png \
-    bootable/recovery/res/images/indeterminate03.png:root/res/images/indeterminate03.png \
-    bootable/recovery/res/images/indeterminate04.png:root/res/images/indeterminate04.png \
-    bootable/recovery/res/images/indeterminate05.png:root/res/images/indeterminate05.png \
-    bootable/recovery/res/images/indeterminate06.png:root/res/images/indeterminate06.png \
-    bootable/recovery/res/images/progress_empty.png:root/res/images/progress_empty.png \
-    bootable/recovery/res/images/progress_fill.png:root/res/images/progress_fill.png \
-    bootable/recovery/res/images/stitch.png:root/res/images/stitch.png 
-#    device/sony/fuji-common/prebuilt/filler:root/filler
 
 # Thermal monitor configuration
 PRODUCT_COPY_FILES += \
