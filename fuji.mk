@@ -142,6 +142,10 @@ PRODUCT_COPY_FILES += \
     device/sony/fuji-common/recovery/bootrec:root/sbin/bootrec \
     device/sony/fuji-common/recovery/postrecoveryboot.sh:root/sbin/postrecoveryboot.sh
 
+# CNE config
+PRODUCT_COPY_FILES += \
+   device/sony/fuji-common/config/OperatorPolicy.xml:system/etc/OperatorPolicy.xml \
+   device/sony/fuji-common/config/UserPolicy.xml:system/etc/UserPolicy.xml
 
 # Thermal monitor configuration
 PRODUCT_COPY_FILES += \
@@ -184,7 +188,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     debug.sf.hw=1 \
     debug.enabletr=true \
-    debug.composition.type=gpu \
+    debug.composition.type=dyn \
     debug.mdpcomp.maxlayer=3 \
     debug.mdpcomp.logs=0 \
     ro.hwui.text_cache_width=2048
