@@ -140,7 +140,8 @@ PRODUCT_COPY_FILES += \
 # Recovery bootstrap script
 PRODUCT_COPY_FILES += \
     device/sony/fuji-common/recovery/bootrec:root/sbin/bootrec \
-    device/sony/fuji-common/recovery/postrecoveryboot.sh:root/sbin/postrecoveryboot.sh
+    device/sony/fuji-common/recovery/postrecoveryboot.sh:root/sbin/postrecoveryboot.sh \
+    device/sony/fuji-common/recovery/nandroid-md5.sh:root/sbin/nandroid-md5.sh
 
 # CNE config
 PRODUCT_COPY_FILES += \
