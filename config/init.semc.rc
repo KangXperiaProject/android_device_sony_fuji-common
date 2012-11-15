@@ -1,4 +1,5 @@
 import init.semc.usb.rc
+import init.semc.service.rc
 
 on early-init
     mkdir /storage 0050 system sdcard_r
@@ -22,6 +23,7 @@ on fs
     # SEMC, TA Daemon
     class_start trimarea
     exec /system/bin/wait4tad
+    class_start emmc
 
 on post-fs
     mkdir /system/etc/firmware/misc 0771 system system
@@ -321,11 +323,6 @@ service secchan /system/bin/secchand
     user system
     group system
 
-service illumination /system/bin/illumination_service
-    class main
-    user system
-    group system
-
 service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
     --use_baudrate_for_download --tosleep 20000 --scopcm 0,4,0,0,0,0,0,0,3,0 \
     --no2bytes --baudrate 3000000 --patchram /system/etc/firmware/BCM4330.hcd \
@@ -337,18 +334,13 @@ service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
     oneshot
 
 service updatemiscta /system/bin/updatemiscta
-    class core
+    class emmc
     user root
-    disabled
     oneshot
-
-service rmt_storage /system/bin/rmt_storage
-    class main
-    user root
 
 # SEMC, TA rmt service
 service ta_rmt_service /system/bin/ta_rmt_service
-    class main
+    class emmc
     user root
 
 # Copy calibration data from NV to kernel drivers
@@ -459,7 +451,6 @@ on property:init.svc.bootanim=stopped
     start thermald
 
 service nvcustomizer /system/bin/nvcustomizer
-    class late_start
     user root
     oneshot
     disabled
@@ -481,4 +472,10 @@ on property:ro.hdmi.enable=true
     start hdmid
 
 on property:sys.radio.shutdown=true
-   exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
+    exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
+
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd
+
+on property:init.svc.p2p_supplicant=stopped
+    stop dhcpcd
