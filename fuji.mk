@@ -3,9 +3,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
-# Recovery resources
-$(call inherit-product, device/sony/fuji-common/recovery/recovery.mk)
-
 DEVICE_PACKAGE_OVERLAYS += device/sony/fuji-common/overlay
 
 # Permissions
@@ -135,12 +132,12 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 # Custom init / uevent
 PRODUCT_COPY_FILES += \
     device/sony/fuji-common/config/init.semc.rc:root/init.semc.rc \
+    device/sony/fuji-common/config/init.fixbt.sh:system/etc/init.fixbt.sh \
     device/sony/fuji-common/config/ueventd.semc.rc:root/ueventd.semc.rc
 
-# Recovery bootstrap script
+# Post recovery script
 PRODUCT_COPY_FILES += \
-    device/sony/fuji-common/recovery/bootrec:root/sbin/bootrec \
-    device/sony/fuji-common/recovery/postrecoveryboot.sh:root/sbin/postrecoveryboot.sh \
+    device/sony/fuji-common/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
     device/sony/fuji-common/recovery/nandroid-md5.sh:root/sbin/nandroid-md5.sh
 
 # CNE config
